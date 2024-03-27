@@ -37,5 +37,8 @@ for opers in operator_lst:
         res_max = temp
     if temp < res_min:
         res_min = temp
+    if len(operator_lst) == 1:
+        res_min = temp
+        res_max = temp
 
 print(res_min,res_max)
