@@ -10,12 +10,17 @@ for _ in range(N):
     t.append(temp_t)
     p.append(temp_p)
 lst = []
+last_pay = 0
 
 def func(day,money):
-    if day >= N+1:
+    if day == N+1:
         lst.append(money)
         return
+    elif day > N+1:
+        lst.append(money-last_pay)
+        return
     else:
+        last_pay = p[day-1]
         func(day+t[day-1],money+p[day-1])
         func(day+1,money)
 
