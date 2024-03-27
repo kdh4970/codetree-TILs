@@ -12,7 +12,7 @@ for _ in range(N):
 lst = []
 
 def func(day,money):
-    if day == N+1:
+    if day >= N+1:
         lst.append(money)
         return
     else:
