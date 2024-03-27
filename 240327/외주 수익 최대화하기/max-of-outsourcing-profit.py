@@ -13,6 +13,7 @@ lst = []
 last_pay = 0
 
 def func(day,money):
+    global last_pay
     if day == N+1:
         lst.append(money)
         return
