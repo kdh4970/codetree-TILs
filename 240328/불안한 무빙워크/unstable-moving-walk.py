@@ -1,6 +1,6 @@
 # 무빙워크 판의 개수 N, 안정성이 0인 판의 개수가 K일 떄 실험 종료
 # 종료 조건 : 안정성이 0인 판이 K개
-# for _ in list: 에서 _의 값을 직접 수정 불가함.
+# 
 from collections import deque
 
 N, K = list(map(int,input().split()))
@@ -13,11 +13,17 @@ def simul():
     while True:
         #1
         cnt += 1
+        print(cnt)
         moving_walk.rotate(1)
         if person:
             for _ in range(len(person)):
                 person[_] += 1
-                if person[_]+1 in person or moving_walk[person[_]] == 0:
+            if N-1 in person:
+                person.popleft()
+        #2
+        if person:
+            for _ in range(len(person)):
+                if person[_]+1 in person or moving_walk[person[_]+1] == 0:
                     continue
                 person[_] += 1
                 moving_walk[person[_]] -= 1
@@ -31,8 +37,6 @@ def simul():
             if N-1 in person:
                     person.popleft()
         #4
-        # print(moving_walk)
-        # print(person)
         if moving_walk.count(0) >= K:
             return cnt
         
