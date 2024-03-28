@@ -9,16 +9,16 @@
 # n 개의 일을 n/2개로 분할 시 나오는 경우의 수 k, k[0] k[-1]은 아침 저녁 일 관계, 즉 코스트도 k개에 대해서 구하고, 양끝에서부터 합계산
 # 강도를 구하는 함수
 
-# from functools import lru_cache
+from functools import lru_cache
 
 N = int(input())
 p = [list(map(int,input().split())) for _ in range(N)]
 
-# @lru_cache
+@lru_cache
 def getCost(job1,job2):
     return p[job1][job2] + p[job2][job1]
 
-# @lru_cache
+@lru_cache
 def getTotalCost(job_list):
     total = 0
     for job1 in job_list:
