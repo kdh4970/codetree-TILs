@@ -13,7 +13,6 @@ def simul():
     while True:
         #1
         cnt += 1
-        print(cnt)
         moving_walk.rotate(1)
         if person:
             for _ in range(len(person)):
