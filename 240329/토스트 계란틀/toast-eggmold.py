@@ -26,7 +26,6 @@ def bfs(row,col,visited):
     if len(union) == 1:
         return 0
     else:
-        print(union)
         new = sum(board[a][b] for a,b in union) // len(union)
         for r,c in union:
             board[r][c] = new
