@@ -54,10 +54,17 @@ def getMindistPerPerson(_person_pos,_hospital):
 
 sampledHosp = []
 
+minsum = 1e6
 
 def sampleM(cnt,lst):
+    global minsum
     if len(lst) == M:
-        sampledHosp.append(lst.copy())
+        # sampledHosp.append(lst.copy())
+        temp = 0
+        for p in person:
+            if temp > minsum: return
+            temp += getMindistPerPerson(p,lst)
+        minsum = temp if temp < minsum else minsum
         return
     for _ in range(len(hosp)):
         if _ < cnt or hosp[_] in lst:
@@ -71,6 +78,8 @@ sampleM(0,[])
 # print(sampledHosp)
 
 
-def getMindistTotal(_hosp):
-    return sum(getMindistPerPerson(p,_hosp) for p in person)
-print(min(getMindistTotal(_) for _ in sampledHosp))
+# def getMindistTotal(_hosp):
+#     return sum(getMindistPerPerson(p,_hosp) for p in person)
+# print(min(getMindistTotal(_) for _ in sampledHosp))
+
+print(minsum)
