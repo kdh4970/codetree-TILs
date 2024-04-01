@@ -28,29 +28,37 @@ for row in range(N):
 
 
 def getMindistPerPerson(_person_pos,_hospital):
-    q = deque()
-    q.append(_person_pos)
-    minDist = 2*N
-    dstMap = [[-1]*N for _ in range(N)]
-    dst = 0
-    while q:
-        now_r,now_c = q.popleft()
-        if dst == 0:
-            dstMap[now_r][now_c] = dst
-            dst += 1
-        else:
-            dst = dstMap[now_r][now_c] +1
-        for _ in range(4):
-            search_r, search_c = now_r+dx[_], now_c+dy[_]
-            if not 0 <= search_r < N or not 0 <= search_c < N or dstMap[search_r][search_c] > -1 :
-                continue
-            if (search_r,search_c) in _hospital:
-                minDist = dst if dst < minDist else minDist
-                # print(dstMap)
-                # print(minDist)
-                return minDist
-            dstMap[search_r][search_c] = dst
-            q.append((search_r,search_c))
+    px,py = _person_pos
+    mindst = 2*N
+    for h in _hospital:
+        dst = abs(px-h[0]) + abs(py-h[1])
+        mindst = dst if dst < mindst else mindst
+    return mindst
+
+# def getMindistPerPerson(_person_pos,_hospital):
+#     q = deque()
+#     q.append(_person_pos)
+#     minDist = 2*N
+#     dstMap = [[-1]*N for _ in range(N)]
+#     dst = 0
+#     while q:
+#         now_r,now_c = q.popleft()
+#         if dst == 0:
+#             dstMap[now_r][now_c] = dst
+#             dst += 1
+#         else:
+#             dst = dstMap[now_r][now_c] +1
+#         for _ in range(4):
+#             search_r, search_c = now_r+dx[_], now_c+dy[_]
+#             if not 0 <= search_r < N or not 0 <= search_c < N or dstMap[search_r][search_c] > -1 :
+#                 continue
+#             if (search_r,search_c) in _hospital:
+#                 minDist = dst if dst < minDist else minDist
+#                 # print(dstMap)
+#                 # print(minDist)
+#                 return minDist
+#             dstMap[search_r][search_c] = dst
+#             q.append((search_r,search_c))
 
 sampledHosp = []
 
