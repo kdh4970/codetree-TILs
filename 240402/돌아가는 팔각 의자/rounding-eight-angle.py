@@ -23,7 +23,7 @@ def RotateSeat(target,direction,connect):
     if target < 0 or target > 3:
         return
     
-    if connect[target-1] and isrotate[target-1] == False:
+    if target-1 >= 0 and connect[target-1] and isrotate[target-1] == False:
         RotateSeat(target-1,-direction,connect)
     if target +1 <= 3 and connect[target] and isrotate[target+1] == False:
         RotateSeat(target+1,-direction,connect)
