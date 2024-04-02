@@ -40,26 +40,30 @@ def search_seat(start_point,std,cnt):
                 q.append((search_r,search_c))
                 isVisit[search_r][search_c]=1
         if seat[now_r][now_c] > 0:continue
-        possible_seat[(now_r,now_c)] = (n_like,empty)
-    possible_seat = sorted(possible_seat.items(),key = lambda x:(x[1][0],x[1][1]),reverse = True)
+        possible_seat[(-now_r,-now_c)] = (n_like,empty)
+    possible_seat = sorted(possible_seat.items(),key = lambda x:(x[1][0],x[1][1],x[0][0]),reverse = True)
     # print(possible_seat)
     
-    for _ in range(len(possible_seat)-1):
+    for _ in range(len(possible_seat)):
         now_pos, now_val = possible_seat[_]
+        if _ == len(possible_seat)-1:
+            seat[-now_pos[0]][-now_pos[1]] = std[0]
+            break
+        
         next_pos,next_val = possible_seat[_+1]
         if now_val[0] > next_val[0]:
-            seat[now_pos[0]][now_pos[1]] = std[0]
+            seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
         if now_val[1] > next_val[1]:
-            seat[now_pos[0]][now_pos[1]] = std[0]
+            seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
-        if now_pos[0] < next_pos[0]:
-            seat[now_pos[0]][now_pos[1]] = std[0]
+        if -now_pos[0] < next_pos[0]:
+            seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
-        elif now_pos[0] > next_pos[0]:
+        elif -now_pos[0] > next_pos[0]:
             continue
-        if now_pos[1] < next_pos[1]:
-            seat[now_pos[0]][now_pos[1]] = std[0]
+        if -now_pos[1] < next_pos[1]:
+            seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
         
 for _ in range(N**2):
