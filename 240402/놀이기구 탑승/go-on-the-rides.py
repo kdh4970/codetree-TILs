@@ -57,12 +57,12 @@ def search_seat(start_point,std,cnt):
         if now_val[1] > next_val[1]:
             seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
-        if -now_pos[0] < next_pos[0]:
+        if -now_pos[0] < -next_pos[0]:
             seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
-        elif -now_pos[0] > next_pos[0]:
+        elif -now_pos[0] > -next_pos[0]:
             continue
-        if -now_pos[1] < next_pos[1]:
+        if -now_pos[1] < -next_pos[1]:
             seat[-now_pos[0]][-now_pos[1]] = std[0]
             break
         
