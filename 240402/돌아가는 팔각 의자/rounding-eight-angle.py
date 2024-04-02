@@ -20,7 +20,7 @@ def RotateSeat(target,direction,connect):
     global isrotate
     seat[target].rotate(direction)
     isrotate[target] = True
-    if target <= 0 or target >= 3:
+    if target < 0 or target+1 > 3:
         return
     
     if connect[target-1] and isrotate[target-1] == False:
